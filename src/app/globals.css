@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Paleta 2 del reto (tonos azules) */
+:root {
+  --navy: #102e40;
+  --mist: #c7d2d9;
+  --ocean: #025373;
+  --sky: #40d3f2;
+  --cyan: #3de0f2;
+
+  --radius: 0.75rem;
+
+  /* Superficies claras derivadas de la paleta: fondo tenue de mist y tarjetas blancas */
+  --background: color-mix(in oklab, var(--mist) 26%, white);
+  --foreground: var(--navy);
+  --card: #ffffff;
+  --card-foreground: var(--navy);
+  --popover: #ffffff;
+  --popover-foreground: var(--navy);
+  --primary: var(--ocean);
+  --primary-foreground: #ffffff;
+  --secondary: var(--navy);
+  --secondary-foreground: #ffffff;
+  --muted: color-mix(in oklab, var(--mist) 45%, white);
+  --muted-foreground: color-mix(in oklab, var(--navy) 72%, white);
+  --accent: var(--sky);
+  --accent-foreground: var(--navy);
+  --destructive: #b3261e;
+  --border: color-mix(in oklab, var(--mist) 80%, white);
+  --input: color-mix(in oklab, var(--mist) 70%, var(--navy));
+  --ring: var(--ocean);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-navy: var(--navy);
+  --color-mist: var(--mist);
+  --color-ocean: var(--ocean);
+  --color-sky: var(--sky);
+  --color-cyan: var(--cyan);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1rem;
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Rayado de los cuadros "hatched" del wireframe, en versión sutil */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 10px,
+    color-mix(in oklab, var(--navy) 14%, transparent) 10px 11px
+  );
+}
+
+/* Único movimiento automático de la página: la red del hero se dibuja una vez */
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.network-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .network-line {
+    animation: draw 2.2s ease-out both;
+    animation-delay: var(--d, 0s);
+  }
+  .network-node {
+    animation: appear 0.7s ease-out both;
+    animation-delay: var(--d, 0s);
+  }
+}
