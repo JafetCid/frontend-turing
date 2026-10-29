@@ -1,10 +1,9 @@
-import { ArrowUp, BookOpen, Braces, FileText } from "lucide-react";
+import { ArrowUp, BookOpen, FileText } from "lucide-react";
 import { DOCS_URL } from "@/lib/api";
 import { LogoMark } from "./logo-mark";
 
 const ICON_LINKS = [
   { href: DOCS_URL, label: "Documentación de la API (Swagger)", icon: FileText, external: true },
-  { href: `${DOCS_URL}.json`, label: "Especificación OpenAPI en JSON", icon: Braces, external: true },
   { href: "#cursos", label: "Ir a los cursos", icon: BookOpen, external: false },
   { href: "#inicio", label: "Volver al inicio", icon: ArrowUp, external: false },
 ];
@@ -38,7 +37,7 @@ const COLUMNS = [
 export function SiteFooter() {
   return (
     <footer className="bg-navy text-white">
-      <div className="container-page grid gap-12 py-14 md:grid-cols-[1.2fr_repeat(3,1fr)]">
+      <div className="container-page grid gap-12 py-14 place-items-center sm:place-items-start sm:grid-cols-[1.2fr_repeat(3,1fr)]">
         <div>
           <div className="flex items-center gap-2.5">
             <LogoMark />
@@ -62,9 +61,9 @@ export function SiteFooter() {
         </div>
 
         {COLUMNS.map((column) => (
-          <nav key={column.title} aria-label={column.title}>
+          <nav key={column.title} aria-label={column.title} className="flex flex-col items-center sm:items-start">
             <h2 className="font-display text-sm font-semibold text-sky">{column.title}</h2>
-            <ul className="mt-4 grid gap-2.5 text-sm">
+            <ul className="mt-4 grid gap-2.5 text-sm text-center sm:text-start">
               {column.items.map((item) => (
                 <li key={item.label}>
                   {"href" in item ? (
@@ -85,7 +84,7 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="border-t border-white/10">
-        <p className="container-page py-5 text-sm text-white/60">
+        <p className="container-page text-center py-5 text-sm text-white/60">
           © 2026 Sinapsis Academy.
         </p>
       </div>
