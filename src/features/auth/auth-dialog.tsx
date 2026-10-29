@@ -169,9 +169,6 @@ function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
           aria-describedby="register-password-hint register-password-error"
           {...register("password")}
         />
-        <p id="register-password-hint" className="text-sm text-muted-foreground">
-          Mínimo 8 caracteres.
-        </p>
         <FieldError id="register-password-error" message={errors.password?.message} />
       </div>
       <FieldError id="register-root-error" message={errors.root?.message} />

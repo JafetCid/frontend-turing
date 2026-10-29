@@ -1,5 +1,5 @@
 import { ArrowUp, BookOpen, Braces, FileText } from "lucide-react";
-import { API_URL, DOCS_URL } from "@/lib/api";
+import { DOCS_URL } from "@/lib/api";
 import { LogoMark } from "./logo-mark";
 
 const ICON_LINKS = [
@@ -86,7 +86,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/10">
         <p className="container-page py-5 text-sm text-white/60">
-          © 2026 Sinapsis Academy. Datos servidos por {API_URL.replace(/^https?:\/\//, "")}.
+          © 2026 Sinapsis Academy.
         </p>
       </div>
     </footer>
